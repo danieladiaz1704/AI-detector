@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Model files
+*.pkl
+
+# Dataset
+backend/data/
+*.csv
+
+# Node
+node_modules/
+
+# Env
+.env
+
+# VS Code
+.vscode/git filter-branch --force --index-filter "git rm --cached --ignore-unmatch backend/data/dataset.csv" --prune-empty --tag-name-filter cat -- --all

@@ -1,0 +1,31 @@
+:root {
+  font-family: Arial, sans-serif;
+  color: #ffffff;
+  background: #02030a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: #02030a;
+}
+
+button,
+textarea,
+input {
+  font: inherit;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

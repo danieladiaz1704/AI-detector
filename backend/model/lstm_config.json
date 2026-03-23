@@ -2,5 +2,78 @@
     "max_words": 20000,
     "max_len": 200,
     "embedding_dim": 128,
-    "threshold": 0.5
+    "threshold": 0.5,
+    "selected_experiment": "LSTM_more_dropout",
+    "dropout1": 0.5,
+    "dropout2": 0.3,
+    "optimizer": "adam",
+    "use_batchnorm": false,
+    "all_results": [
+        {
+            "model_name": "LSTM_baseline",
+            "dropout1": 0.3,
+            "dropout2": 0.2,
+            "optimizer": "adam",
+            "use_batchnorm": false,
+            "accuracy": 0.998163104046302,
+            "precision": 0.9981513671605552,
+            "recall": 0.9969135802469136,
+            "f1_score": 0.9975320897271511,
+            "confusion_matrix": [
+                [
+                    61092,
+                    67
+                ],
+                [
+                    112,
+                    36176
+                ]
+            ],
+            "classification_report": "              precision    recall  f1-score   support\n\n           0       1.00      1.00      1.00     61159\n           1       1.00      1.00      1.00     36288\n\n    accuracy                           1.00     97447\n   macro avg       1.00      1.00      1.00     97447\nweighted avg       1.00      1.00      1.00     97447\n"
+        },
+        {
+            "model_name": "LSTM_more_dropout",
+            "dropout1": 0.5,
+            "dropout2": 0.3,
+            "optimizer": "adam",
+            "use_batchnorm": false,
+            "accuracy": 0.9982657239319835,
+            "precision": 0.9985093990669942,
+            "recall": 0.9968309082892416,
+            "f1_score": 0.9976694477004757,
+            "confusion_matrix": [
+                [
+                    61105,
+                    54
+                ],
+                [
+                    115,
+                    36173
+                ]
+            ],
+            "classification_report": "              precision    recall  f1-score   support\n\n           0       1.00      1.00      1.00     61159\n           1       1.00      1.00      1.00     36288\n\n    accuracy                           1.00     97447\n   macro avg       1.00      1.00      1.00     97447\nweighted avg       1.00      1.00      1.00     97447\n"
+        },
+        {
+            "model_name": "LSTM_batchnorm_rmsprop",
+            "dropout1": 0.3,
+            "dropout2": 0.2,
+            "optimizer": "rmsprop",
+            "use_batchnorm": true,
+            "accuracy": 0.9975986946750541,
+            "precision": 0.9961741715292304,
+            "recall": 0.9973820546737213,
+            "f1_score": 0.9967777471770862,
+            "confusion_matrix": [
+                [
+                    61020,
+                    139
+                ],
+                [
+                    95,
+                    36193
+                ]
+            ],
+            "classification_report": "              precision    recall  f1-score   support\n\n           0       1.00      1.00      1.00     61159\n           1       1.00      1.00      1.00     36288\n\n    accuracy                           1.00     97447\n   macro avg       1.00      1.00      1.00     97447\nweighted avg       1.00      1.00      1.00     97447\n"
+        }
+    ]
 }

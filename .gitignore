@@ -2,34 +2,33 @@
 __pycache__/
 *.pyc
 venv/
+.venv/
+
+# Secrets
+.env
+backend/.env
 
 # Model files
+backend/model/
 *.pkl
+*.keras
+*.bin
+*.safetensors
+*.pt
 
 # Dataset
 backend/data/
 *.csv
 
+# Results
+backend/results/
+backend/bert_results/
+backend/bert_checkpoints/
+
 # Node
 node_modules/
-
-# Env
-.env
-
-# VS Code
-.vscode/git filter-branch --force --index-filter "git rm --cached --ignore-unmatch backend/data/dataset.csv" --prune-empty --tag-name-filter cat -- --all
-
-
-.venv/
-
 dist/
 build/
 
-
-backend/bert_results/
-backend/model/bert_model/
-backend/model/*.keras
-backend/model/*.pkl
-backend/model/*.bin
-backend/model/*.safetensors
-backend/model/*.pt
+# VS Code
+.vscode/

@@ -1,0 +1,180 @@
+# AI Text Detector
+
+A deep learning web application that classifies text as AI-generated or human-written.
+Supports four models: Logistic Regression, LSTM, GRU, and BERT.
+
+---
+
+## Group Members
+
+| Name | Student ID | Contribution |
+|------|-----------|--------------|
+| Member 1 | | |
+| Member 2 | | |
+| Member 3 | | |
+| Member 4 | | |
+| Member 5 | | |
+| Member 6 | | |
+
+*(Fill in names, IDs, and contributions)*
+
+---
+
+## Project Structure
+
+```
+project/
+├── backend/
+│   ├── app.py                   ← FastAPI server (API)
+│   ├── train_traditional.py     ← Experiment 1: Logistic Regression (TF-IDF)
+│   ├── train_lstm.py            ← Experiment 1: LSTM (Supervised)
+│   ├── train_gru.py             ← Experiment 1: GRU (Supervised)
+│   ├── train_unsupervised.py    ← Experiment 2: Autoencoder (Unsupervised)
+│   ├── train_bert.py            ← Experiment 3: BERT (State-of-the-art)
+│   ├── utils/
+│   │   └── evaluation.py        ← Shared metrics utilities
+│   ├── data/
+│   │   └── dataset.csv          ← Kaggle dataset (see below)
+│   ├── model/                   ← Saved models (auto-created on training)
+│   └── plots/                   ← Training plots (auto-created on training)
+├── frontend/
+│   ├── index.html
+│   └── src/
+│       ├── App.jsx              ← Main React component
+│       ├── App.css              ← Styles
+│       ├── index.css
+│       └── main.jsx
+└── README.md
+```
+
+---
+
+## Dataset
+
+**Source:** Kaggle — AI vs Human Text Dataset  
+**URL:** https://www.kaggle.com/datasets/shanegerami/ai-vs-human-text
+
+**Download instructions:**
+1. Create a free Kaggle account at https://www.kaggle.com
+2. Go to the dataset URL above and click **Download**
+3. Extract and place `dataset.csv` inside `backend/data/`
+4. Ensure the CSV has two columns: `text` (string) and `generated` (0=human, 1=AI)
+
+---
+
+## Dependencies
+
+### Backend (Python 3.10+)
+
+```bash
+pip install fastapi uvicorn[standard] pandas numpy scikit-learn \
+            tensorflow transformers datasets torch \
+            matplotlib nltk
+```
+
+Or install from requirements:
+```bash
+pip install -r backend/requirements.txt
+```
+
+### Frontend (Node.js 18+)
+
+```bash
+cd frontend
+npm install
+```
+
+---
+
+## Running the Project
+
+### Step 1 — Train the models (run each script once)
+
+```bash
+cd backend
+
+# Experiment 1 — Supervised models
+python train_traditional.py   # Logistic Regression (fast, ~1 min)
+python train_lstm.py          # LSTM with 3 experiments (~10–20 min)
+python train_gru.py           # GRU (~5–10 min)
+
+# Experiment 2 — Unsupervised (Autoencoder)
+python train_unsupervised.py  # (~10–20 min)
+
+# Experiment 3 — BERT (State-of-the-art)
+python train_bert.py          # (~30–60 min, GPU recommended)
+```
+
+> **Note:** Models are saved to `backend/model/`. You only need to train once.  
+> Training plots are saved to `backend/plots/`.
+
+### Step 2 — Start the backend API
+
+```bash
+cd backend
+uvicorn app:app --host 127.0.0.1 --port 8001 --reload
+```
+
+The API will be available at: http://127.0.0.1:8001  
+Interactive API docs: http://127.0.0.1:8001/docs
+
+### Step 3 — Start the frontend
+
+```bash
+cd frontend
+npm run dev
+```
+
+Open your browser at: http://localhost:5173
+
+---
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET    | `/health` | Health check |
+| POST   | `/predict` | Run prediction |
+
+### POST /predict
+
+**Request body:**
+```json
+{
+  "text": "Your text here...",
+  "model_name": "lstm"
+}
+```
+
+**`model_name` options:** `traditional`, `lstm`, `gru`, `bert`
+
+**Response:**
+```json
+{
+  "ai_probability": 85.3,
+  "human_probability": 14.7,
+  "model_used": "lstm",
+  "sentences": [
+    { "sentence": "First sentence.", "label": "AI", "probability": 0.9 },
+    { "sentence": "Second sentence.", "label": "Human", "probability": 0.3 }
+  ]
+}
+```
+
+---
+
+## GPU Acceleration (Optional)
+
+BERT training is significantly faster on a GPU.  
+If you have an NVIDIA GPU with CUDA, install:
+
+```bash
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+```
+
+---
+
+## Results
+
+Training results, plots, and model configs are saved in `backend/plots/` and `backend/model/` after training.
+See the analysis report for full evaluation metrics and comparisons.

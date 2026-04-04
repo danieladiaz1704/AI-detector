@@ -1,6 +1,0 @@
-{
-    "max_words": 20000,
-    "max_len": 200,
-    "embedding_dim": 128,
-    "threshold": 0.5
-}

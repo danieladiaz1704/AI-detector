@@ -285,7 +285,7 @@ def main():
     print(f"Saved tokenizer    -> {tok_path}")
     print(f"Saved config       -> {cfg_path}")
     print(f"Saved results      -> {res_path}")
-    print("\nAutoencoder training complete!")
+    print("\nAutoencoder training finished!")
 
 
 if __name__ == "__main__":
